@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <meta charset="UTF-8">
+    <title>Kalkulator Bangun</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>Kalkulator Bangun</h1>
+    <p>Pilih bangun, pahami rumus, dan hitung dengan mudah</p>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+<section id="home">
+<main>
+
+<div class="box">
+    <label>Pilih Kategori</label>
+    <select id="kategori" onchange="resetBangun()">
+        <option value="">-- Pilih --</option>
+        <option value="datar">Bangun Datar</option>
+        <option value="ruang">Bangun Ruang</option>
+    </select>
+
+    <label>Pilih Bangun</label>
+    <select id="bangun" onchange="tampilkanForm()">
+        <option value="">-- Pilih Bangun --</option>
+    </select>
+</div>
+
+<div id="konten" class="card"></div>
+
+</main>
+</section>
+
+<section id="about">
+    <div class="card">
+        <h2>Tentang Website</h2>
+        <p style="text-align: justify;">Kami memilih tema web pendidikan tentang kalkulator bangun datar dan bangun ruang karena materi ini sering dipelajari oleh pelajar dan merupakan bagian penting dalam pelajaran matematika. Namun, banyak pelajar yang masih merasa kesulitan dalam menghitung luas, keliling, dan volume karena harus menghafal banyak rumus. Dengan adanya web kalkulator ini, pelajar dapat memasukkan data yang diperlukan lalu langsung melihat hasil perhitungannya. Hal ini dapat membantu pelajar memahami cara penggunaan rumus dengan lebih mudah dan mengurangi kesalahan saat menghitung. Selain itu, web ini bisa diakses kapan saja melalui handphone atau laptop, 
+            sehingga memudahkan pelajar untuk belajar secara mandiri di luar jam sekolah. Menurut saya, tema ini cocok karena menggabungkan pelajaran matematika dengan teknologi yang dekat dengan kehidupan pelajar.
+        </p>
+    </div>
+</section>
+
+<section id="contact">
+    <div class="card">
+        <h2>Contact Kami</h2>
+        <p>
+            Whatsapp: 0887710560447 <br>
+            Email: Kalku.sma@gmail.com <br>
+            Sekolah: SMAN 2 Bantul <br>
+        </p>
+    </div>
+</section>
+
+<script>
+function resetBangun() {
+    bangun.innerHTML = `<option value="">-- Pilih Bangun --</option>`;
+    konten.innerHTML = "";
+
+    if (kategori.value === "datar") {
+        bangun.innerHTML += `
+            <option value="persegi">Persegi</option>
+            <option value="lingkaran">Lingkaran</option>
+            <option value="segitiga">Segitiga</option>
+            <option value="persegi_panjang">Persegi Panjang</option>
+            <option value="trapesium">Trapesium</option>
+            <option value="jajar_genjang">Jajar Genjang</option>
+            <option value="layang_layang">Layang-Layang</option>
+            <option value="belah_ketupat">Belah Ketupat</option>
+            <option value="segi_lima">Segi lima</option>
+        `;
+    }
+
+    if (kategori.value === "ruang") {
+        bangun.innerHTML += `
+            <option value="kubus">Kubus</option>
+            <option value="balok">Balok</option>
+            <option value="limas">Limas</option>
+            <option value="prisma">Prisma</option>
+            <option value="tabung">Tabung</option>
+            <option value="kerucut">Kerucut</option>
+            <option value="bola">Bola</option>
+        `;
+    }
+}
+
+function tampilkanForm() {
+    const data = {
+        persegi: `
+            
+            <h3>Persegi</h3>
+            <img src=".vscode/persegi-bangun-datar.png" class="gambar-bangun">
+            <p>Persegi memiliki 4 sisi sama panjang.</p>
+            <div class="rumus">
+                L = s × s<br>
+                K = 4 × s</div>
+
+            <label>Masukkan sisi</label>
+            <input type="number" id="s">
+
+            <button onclick="hasilPersegi()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        lingkaran: `
+            <h3>Lingkaran</h3>
+            <img src=".vscode/lingkaran.png" class="gambar-bangun">
+            <p>Lingkaran adalah bangun datar dengan satu sisi melengkung.</p>
+            <div class="rumus">
+                L = π × r²<br>
+                K = 2 × π × r</div>
+
+            <label>Masukkan jari-jari</label>
+            <input type="number" id="r">
+
+            <button onclick="hasilLingkaran()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        segitiga:`
+            <h3>Segitiga</h3>
+            <img src=".vscode/Segitiga.png" class="gambar-bangun"
+            <p>Segitiga adalah sebuah bangun datar yang memiliki tiga sisi garis lurus, tiga titik sudut dan jumlah ketiga sudut dalamnya 180 derajat</p>
+            <div class="rumus">
+                \\[L = \\frac{1}{2} × a × t \\]<br>
+                K = a + b + c</div>
+
+            <label>Masukan alas (sisi a)</label>
+            <input type="number" id="a">
+            <label>Masukan tinggi (t)</label>
+            <input type="number" id="t"
+            <label>Masukan sisi b</label>
+            <input type="number" id="b"
+            <label>Masukan sisi c</label>
+            <input type="number" id="c">
+
+            <button onclick="hasilsegitiga()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        persegi_panjang:`
+            <h3>Persegi Panjang</h3>
+            <img src=".vscode/Persegi_panjang.png" class="gambar-bangun"
+            <p>Persegi panjang adalah bangun datar dengan dua pasang sisi sejajar, sisi yang berhadapan sama panjang, dan 4 sudut siku-siku.</p>
+            <div class="rumus">
+                L = p × l <br>
+                K = 2 × (p + l)</div>
+
+            <label>Masukan Panjang (p)</label>
+            <input type="number" id="p">
+            <label>Masukan Lebar (l)</label>
+            <input type="number" id="l">
+
+            <button onclick="hasilpersegi_panjang()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        trapesium: `
+            <h3>Trapesium</h3>
+            <img src=".vscode/Trapesium.png" class="gambar-bangun">
+            <p>Trapesium adalah bangun datar yang memiliki satu pasang sisi sejajar.</p>
+            <div class="rumus">
+                \\[L = \\frac{1}{2} ×  (DC + AB) × t \\]<br>
+                K = AB + BC + DC + DA</div>
+
+            <label>Masukan sisi AB</label>
+            <input type="number" id="ab">
+            <label>Masukan sisi BC</label>
+            <input type="number" id="bc">
+            <label>Masukan sisi DC</label>
+            <input type="number" id="dc">
+            <label>Masukan sisi DA</label>
+            <input type="number" id="da">
+            <label>Masukan tinggi (t)</label>
+            <input type="number" id="t">
+
+            <button onclick="hasiltrapesium()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        jajar_genjang: `
+            <h3>Jajar Genjang</h3>
+            <img src=".vscode/Jajar Genjang.png" class="gambar-bangun">
+            <p>Jajar genjang adalah bangun datar dengan dua pasang sisi sejajar dan sama panjang.</p>
+            <div class="rumus">
+                L = a × t<br>
+                K = 2 × (a + sisi miring)</div>
+
+            <label>Masukan alas (a)</label>
+            <input type="number" id="a">
+            <label>Masukan tinggi (t)</label>
+            <input type="number" id="t">
+            <label>Masukan sisi miring</label>
+            <input type="number" id="sm">
+
+            <button onclick="hasiljajar_genjang()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        layang_layang: `
+            <h3>Layang-layang</h3>
+            <img src=".vscode/Layang_layang.png" class="gambar-bangun">
+            <p>Layang-layang adalah bangun datar dengan dua pasang sisi sama panjang yang berdekatan. Diagonal saling tegak lurus dan satu diagonal membagi diagonal lainnya.</p>
+            <div class="rumus">
+                \\[L = \\frac{1}{2} × d1 × d2 \\]<br>
+                K = CD + BC + AB + AD</div>
+
+            <label>Masukan d1</label>
+            <input type="number" id="d1">
+            <label>Masukan d2</label>
+            <input type="number" id="d2">
+            <label>Masukan sisi CD</label>
+            <input type="number" id="cd">
+            <label>Masukan sisi BC</label>
+            <input type="number" id="bc">
+            <label>Masukan sisi AB</label>
+            <input type="number" id="ab">
+            <label>Masukan AD</label>
+            <input type="number" id="ad">
+
+            <button onclick="hasillayang_layang()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        belah_ketupat: `
+            <h3>Belah Ketupat</h3>
+            <img src=".vscode/Belah_ketupat.png" class="gambar-bangun">
+            <p>Belah ketupat adalah bangun datar dengan empat sisi sama panjang, namun sudutnya tidak harus siku-siku. Sifatnya diagonal saling tegak lurus dan diagonal membagi sudut.</p>
+            <div class="rumus">
+                \\[L = \\frac{1}{2} × d1 × d2 \\]<br>
+                K = 4 × s</div>
+
+            <label>Masukan d1</label>
+            <input type="number" id="d1">
+            <label>Masukan d2</label>
+            <input type="number" id="d2">
+            <label>Masukan sisi (s)</label>
+            <input type="number" id="s">
+
+            <button onclick="hasilbelah_ketupat()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        segi_lima: `
+            <h3>Segi Lima Beraturan</h3>
+            <img src=".vscode/Segi_lima.png" class="gambar-bangun">
+            <p>Segi lima beraturan adalah bangun datar yang memiliki lima sisi sama panjang dan lima sudut sama besar.</p>
+            <div class="rumus">
+                \\[L = \\frac{1}{4} × \\sqrt{5(5 + 2\\sqrt{5})} \\, × s^2\\]<br>
+                K = 5 × s
+            </div>
+
+            <label>Masukkan sisi (s)</label>
+            <input type="number" id="s">
+
+            <button onclick="hasilSegiLima()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        kubus: `
+            <h3>Kubus</h3>
+            <img src=".vscode/Kubus.png" class="gambar-bangun">
+            <p>Kubus memiliki 6 sisi berbentuk persegi.</p>
+            <div class="rumus">
+                V = s³<br>
+                LP = 6 × s²</div>
+
+            <label>Masukkan sisi</label>
+            <input type="number" id="s">
+
+            <button onclick="hasilKubus()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        balok: `
+            <h3>Balok</h3>
+            <img src=".vscode/Balok.png" class="gambar-bangun">
+            <p>Balok memiliki panjang, lebar, dan tinggi.</p>
+            <div class="rumus">
+                V = p × l × t<br>
+                LP = 2((p × l) + (p × t) + (l × t))</div>
+
+            <label>Panjang</label>
+            <input type="number" id="p">
+            <label>Lebar</label>
+            <input type="number" id="l">
+            <label>Tinggi</label>
+            <input type="number" id="t">
+
+            <button onclick="hasilBalok()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        limas: `
+            <h3>Limas</h3>
+            <img src=".vscode/Limas.png" class="gambar-bangun">
+            <p>Limas adalah bangun ruang yang memiliki alas dan sisi tegak berbentuk segitiga yang bertemu di satu titik puncak.</p>
+            <div class="rumus">
+                \\[V = \\frac{1}{3} × Luas alas × Tinggi limas \\]<br>
+                LP = Luas alas + Luas semua sisi tegak</div>
+
+            <label>Masukan Luas alas</label>
+            <input type="number" id="La">
+            <label>Masukan Tinggi limas</label>
+            <input type="number" id="T">
+            <label>Masukan Luas semua sisi tegak</label>
+            <input type="number" id="Ls">
+
+            <button onclick="hasillimas()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        prisma: `
+            <h3>Prisma</h3>
+            <img src=".vscode/Prisma.png" class="gambar-bangun">
+            <p>Prisma adalah bangun ruang yang memiliki dua alas sama dan sejajar, serta sisi tegaknya berbentuk persegi panjang.</p>
+            <div class="rumus">
+                V = Luas alas × t<br>
+                LP = (2 × Luas alas) + (Keliling alas × t)</div>
+            
+            <label>Masukan Luas alas</label>
+            <input type="number" id="La">
+            <label>Masukan Tinggi Prisma (t)</label>
+            <input type="number" id="t">
+            <label>Masukan Keliling alas</label>
+            <input type="number" id="Ka">
+
+            <button onclick="hasilprisma()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        tabung: `
+            <h3>Tabung</h3>
+            <img src=".vscode/Tabung.png" class="gambar-bangun">
+            <p>Tabung adalah bangun ruang dengan dua alas berbentuk lingkaran dan satu sisi lengkung.</p>
+            <div class="rumus">
+                V = π × r² × t<br>
+                LP = 2πr² + 2πrt</div>
+
+            <label>Masukan jari-jari</label>
+            <input type="number" id="r">
+            <label>Masukan Tinggi tabung</label>
+            <input type="number" id="t">
+
+            <button onclick="hasiltabung()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        kerucut: `
+            <h3>Kerucut</h3>
+            <img src=".vscode/Kerucut.png" class="gambar-bangun">
+            <p>Kerucut adalah bangun ruang yang memiliki alas lingkaran dan satu titik puncak.</p>
+            <div class="rumus">
+                \\[V = \\frac{1}{3} × π × r² × t\\]<br>
+                LP = πr² + πrs</div>
+
+            <label>Masukan jari-jari</label>
+            <input type="number" id="r">
+            <label>Masukan Tinggi tabung</label>
+            <input type="number" id="t">
+            <label>Masukan panjang garis pelukis (sisi miring)</label>
+            <input type="number" id="s">
+
+            <button onclick="hasilkerucut()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+        bola: `
+            <h3>Bola</h3>
+            <img src=".vscode/Bola.png" class="gambar-bangun">
+            <p>Bola adalah bangun ruang yang seluruh permukaannya berbentuk lengkung.</p>
+            <div class="rumus">
+                \\[V = \\frac{4}{3} × π × r³ \\]<br>
+                LP =  4 × π × r²</div>
+
+            <label>Masukan jari-jari</label>
+            <input type="number" id="r">
+
+            <button onclick="hasilbola()">Hitung</button>
+            <div id="hasil" class="hasil"></div>
+        `,
+    };
+
+    konten.innerHTML = data[bangun.value];
+
+    if (window.MathJax) {
+    MathJax.typeset();
+}
+
+}
+
+/* ===== PERHITUNGAN ===== */
+
+function hasilPersegi() {
+    hasil.innerHTML = `
+        Luas = ${s.value * s.value}<br>
+        Keliling = ${4 * s.value}
+    `;
+}
+
+function hasilLingkaran() {
+    const phi = 3.14;
+    hasil.innerHTML = `
+        Luas = ${(phi * r.value * r.value).toFixed(2)}<br>
+        Keliling = ${(2 * pi * r.value).toFixed(2)}
+    `;
+}
+
+function hasilsegitiga() {
+    hasil.innerHTML = `
+        Luas = ${(0.5 * a.value * t.value)}<br>
+        Keliling = ${Number(a.value) +Number(b.value) + Number(c.value)}   
+    `;
+}
+
+function hasilpersegi_panjang() {
+    hasil.innerHTML = `
+        Luas = ${p.value * l.value}<br>
+        Keliling = ${2 * (Number(p.value) + Number(l.value))}
+    `;
+}
+
+function hasiltrapesium() {
+    hasil.innerHTML = `
+        Luas = ${(0.5 * (Number(dc.value) + Number(ab.value)) * Number(t.value))}<br>
+        Keliling = ${Number(ab.value) + Number(bc.value) + Number(dc.value) + Number(da.value)}
+    `;
+}
+
+function hasiljajar_genjang() {
+    hasil.innerHTML = `
+        Luas= ${a.value * t.value}<br>
+        Keliling= ${2 * (Number(a.value) + Number(sm.value))}
+    `;
+}
+
+function hasillayang_layang() {
+    hasil.innerHTML = `
+        Luas= ${0.5 * d1.value * d2.value}<br>
+        Keliling= ${Number(cd.value) + Number(bc.value) + Number(ab.value) + Number(ad.value)}
+    `;
+}
+
+function hasilbelah_ketupat() {
+    hasil.innerHTML = `
+        Luas = ${0.5 * d1.value * d2.value}<br>
+        Keliling = ${4 * s.value}
+    `;
+}
+
+function hasilSegiLima() {
+    hasil.innerHTML = `
+        Luas = ${(0.25 * Math.sqrt(5 * (5 + 2 * Math.sqrt(5))) * s.value * s.value).toFixed(2)} <br>
+        Keliling = ${5 * s.value}
+    `;
+}
+
+function hasilKubus() {
+    hasil.innerHTML = `
+        Volume = ${s.value ** 3}<br>
+        Luas Permukaan = ${6 * s.value * s.value}
+    `;
+}
+
+function hasilBalok() {
+    hasil.innerHTML = `
+        Volume = ${p.value * l.value * t.value}<br>
+        Luas Permukaan = ${2 * (Number(p.value * l.value) + Number(p.value * t.value) + Number(l.value * t.value))}
+    `;
+}
+
+function hasillimas() {
+    hasil.innerHTML =`
+        Volume = ${(0.3 * La.value * T.value).toFixed(2)}<br>
+        Luas Permukaan = ${Number(La.value) + Number(Ls.value)}
+    `;
+}
+
+function hasilprisma() {
+    hasil.innerHTML =`
+        Volume = ${La.value * t.value}<br>
+        Luas Permukaan = ${Number(2 * La.value) + Number(Ka.value * t.value)}
+    `;
+}
+
+function hasiltabung() {
+    const phi= 3.14;
+    hasil.innerHTML =`
+        Volume = ${(phi * r.value * r.value * t.value).toFixed(2)}<br>
+        Luas Permukaan = ${Number(2 * phi * r.value * r.value) + Number(2 * phi * r.value * t.value).toFixed(2)}
+    `;
+}
+
+function hasilkerucut() {
+    const phi= 3.14;
+    hasil.innerHTML =`
+        Volume = ${(0.3 * phi * r.value * r.value * t.value).toFixed(2)}<br>
+        Luas Permukaan = ${(Number(phi * r.value * r.value) + Number(phi * r.value * s.value)).toFixed(2)}
+    `;
+}
+
+function hasilbola() {
+    const phi= 3.14;
+    hasil.innerHTML =`
+        Volume = ${(1.3 * phi * r.value * r.value * r.value).toFixed(2)}<br>
+        Luas Permukaan = ${(4 * phi * r.value * r.value).toFixed(2)}
+    `;
+}
+</script>
+
+</body>
+</html>
